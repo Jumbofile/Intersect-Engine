@@ -18,6 +18,8 @@
 
         public int MaxStat = 255;
 
+        public int JumpHeight = 1;
+
         public int RequestTimeout = 300000;
 
         public int TradeRange = 6;

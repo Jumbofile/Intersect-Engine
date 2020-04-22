@@ -1,0 +1,2 @@
+cd /d "E:\Repos\PlatformerIntersect\Intersect-Engine\Intersect.Client" &msbuild "Intersect.Client.csproj" /t:sdvViewer /p:configuration="Debug" /p:platform="Any CPU" /p:SolutionDir="E:\Repos\PlatformerIntersect\Intersect-Engine" 
+exit %errorlevel% 

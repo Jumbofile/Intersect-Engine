@@ -51,6 +51,8 @@ namespace Intersect.Configuration
 
         public const string DEFAULT_MENU_MUSIC = "RPG-Theme_v001_Looping.ogg";
 
+        public const int DEFAULT_JUMP_HEIGHT = 1;
+
         #endregion
 
         #region Static Properties and Methods
@@ -66,6 +68,7 @@ namespace Intersect.Configuration
             UIFont = string.IsNullOrWhiteSpace(UIFont) ? DEFAULT_UI_FONT : UIFont.Trim();
             ChatLines = Math.Min(Math.Max(ChatLines, 10), 500);
             IntroImages = new List<string>(IntroImages?.Distinct() ?? new List<string>());
+            JumpHeight = Math.Min(Math.Max(JumpHeight, 1), 10);
         }
 
         #endregion
@@ -121,6 +124,11 @@ namespace Intersect.Configuration
         /// Menu background art
         /// </summary>
         public string MenuBackground { get; set; } = DEFAULT_MENU_BACKGROUND;
+
+        /// <summary>
+        /// Menu background art
+        /// </summary>
+        public int JumpHeight { get; set; } = DEFAULT_JUMP_HEIGHT;
 
         // TODO: What is this for?
         public List<string> IntroImages { get; set; } = new List<string>();

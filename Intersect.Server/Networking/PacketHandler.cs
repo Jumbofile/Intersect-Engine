@@ -411,7 +411,7 @@ namespace Intersect.Server.Networking
             var canMove = player.CanMove(packet.Dir);
             if ((canMove == -1 || canMove == -4) && client.Entity.MoveRoute == null)
             {
-                if ((packet.Dir == 0  || packet.Dir == 4 || packet.Dir == 5) && packet.Jh > Globals.JumpHeight) 
+                if ((packet.Dir == 0  || packet.Dir == 4 || packet.Dir == 5) && packet.Jh > Options.JumpHeight) 
                 {
                    //prevent jumping if the jump height is more than what is defined
                 }

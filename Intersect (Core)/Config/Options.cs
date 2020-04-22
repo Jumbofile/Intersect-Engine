@@ -65,6 +65,8 @@ namespace Intersect
         //Public Getters
         public static ushort ServerPort { get => Instance._serverPort; set => Instance._serverPort = value; }
 
+        public static int JumpHeight => Instance.PlayerOpts.JumpHeight;
+        
         public static int MaxStatValue => Instance.PlayerOpts.MaxStat;
 
         public static int MaxLevel => Instance.PlayerOpts.MaxLevel;
@@ -280,6 +282,8 @@ namespace Intersect
         public const string DEFAULT_GAME_NAME = "Intersect";
 
         public const int DEFAULT_SERVER_PORT = 5400;
+
+        public const int DEFAULT_JUMP_HEIGHT = 1;
 
         #endregion
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Intersect.Client.Core;
 using Intersect.Client.Core.Controls;
+using Intersect.Configuration;
 using Intersect.Client.Entities.Events;
 using Intersect.Client.Entities.Projectiles;
 using Intersect.Client.General;
@@ -1511,7 +1512,7 @@ namespace Intersect.Client.Entities
             //we only want to jump to a certain height
             if (Globals.Me.Jumping == true)
             {
-                if (JumpHeight >= Globals.JumpHeight)
+                if (JumpHeight >= ClientConfiguration.Instance.JumpHeight)
                 {
                     Globals.Me.Jumping = false;
                     

@@ -1790,20 +1790,15 @@ namespace Intersect.Client.Entities
 
             SpriteAnimation = AnimatedTextures[SpriteAnimations.Idle] != null && LastActionTime + TimeBeforeIdling < Globals.System.GetTimeMs() ? SpriteAnimations.Idle : SpriteAnimations.Normal;
 
-            
-            if (IsMoving) //Moving
+            if (Globals.Me.Jumping == true || Globals.Me.Falling == true || !Globals.Me.OnGround()) //Jumping
             {
-                Console.WriteLine(Globals.Me.Jumping);
-                if (Globals.Me.Jumping == true || Globals.Me.Falling == true) //Jumping
-                {
-                    SpriteAnimation = SpriteAnimations.Jump;
-                    LastActionTime = Globals.System.GetTimeMs();
-                }
-                else
-                {
+                SpriteAnimation = SpriteAnimations.Jump;
+                LastActionTime = Globals.System.GetTimeMs();
+            }
+            else if (IsMoving && Globals.Me.Jumping == false && Globals.Me.Falling == false && Globals.Me.OnGround()) //Moving
+            {
                     SpriteAnimation = SpriteAnimations.Normal;
                     LastActionTime = Globals.System.GetTimeMs();
-                }
             }
             else if (AttackTimer > Globals.System.GetTimeMs()) //Attacking
             {
