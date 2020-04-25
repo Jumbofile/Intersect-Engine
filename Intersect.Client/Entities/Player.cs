@@ -801,6 +801,15 @@ namespace Intersect.Client.Entities
         {
             var movex = 0f;
             var movey = 0f;
+            
+            if (Interface.Interface.HasInputFocus())
+            {
+                if(OnGround())
+                {
+                    MoveDir = -1;
+                }
+                return;
+            }
 
             if (Controls.KeyDown(Control.MoveUp))
             {
