@@ -86,8 +86,8 @@ namespace Intersect.Client.Interface.Game.Character
 
             mCharacterPortrait = new ImagePanel(mCharacterContainer);
 
-            PaperdollPanels = new ImagePanel[Options.EquipmentSlots.Count + 1];
-            PaperdollTextures = new string[Options.EquipmentSlots.Count + 1];
+            PaperdollPanels = new ImagePanel[Options.EquipmentSlots.Count + 2];
+            PaperdollTextures = new string[Options.EquipmentSlots.Count + 2];
             for (var i = 0; i <= Options.EquipmentSlots.Count; i++)
             {
                 PaperdollPanels[i] = new ImagePanel(mCharacterContainer);

@@ -150,8 +150,7 @@ namespace Intersect.Client.Entities
                      Globals.GameShop == null &&
                      Globals.InBank == false &&
                      Globals.InCraft == false &&
-                     Globals.InTrade == false &&
-                     !Interface.Interface.HasInputFocus());
+                     Globals.InTrade == false);
         }
 
         public override bool Update()
@@ -802,10 +801,6 @@ namespace Intersect.Client.Entities
         {
             var movex = 0f;
             var movey = 0f;
-            if (Interface.Interface.HasInputFocus())
-            {
-                return;
-            }
 
             if (Controls.KeyDown(Control.MoveUp))
             {
