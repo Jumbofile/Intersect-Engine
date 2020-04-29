@@ -1437,16 +1437,19 @@ namespace Intersect.Client.Entities
             if (OnGround())
             {
                 Globals.Me.Jumping = false;
+                IsJumping = false;
             }
             //should we be falling?
             if (OnGround() == false && Globals.Me.Jumping == false && Globals.Me.Climbing == false)
             {
                 Globals.Me.Falling = true;
+                IsJumping = true;
             }
             else
             {
                 Globals.Me.Falling = false;
                 FallDir = -1;
+                IsJumping = false;
             }
 
             //We are falling
@@ -1494,6 +1497,7 @@ namespace Intersect.Client.Entities
             //We are climbing
             if(Climbing == true)
             {
+                IsJumping = false;
                 if(MoveDir == 1 || MoveDir == 0)
                 {
                     Globals.Me.Jumping = false;
@@ -1510,6 +1514,7 @@ namespace Intersect.Client.Entities
             if ((MoveDir == 0 || MoveDir == 4 || MoveDir == 5) && Jumping == false && Falling == false && OnGround() == true)
             {
                 Globals.Me.Jumping = true;
+                IsJumping = true;
                 FallDir = -1;
             }
             
@@ -1546,6 +1551,7 @@ namespace Intersect.Client.Entities
                 //We are jumping still
                 else
                 {
+                    IsJumping = true;
                     if (JumpDir == 0)
                     {
                         Globals.Me.MoveDir = 0;

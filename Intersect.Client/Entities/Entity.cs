@@ -94,6 +94,8 @@ namespace Intersect.Client.Entities
 
         public bool IsMoving;
 
+        public bool IsJumping;
+
         //Caching
         public MapInstance LatestMap;
 
@@ -1790,15 +1792,25 @@ namespace Intersect.Client.Entities
 
             SpriteAnimation = AnimatedTextures[SpriteAnimations.Idle] != null && LastActionTime + TimeBeforeIdling < Globals.System.GetTimeMs() ? SpriteAnimations.Idle : SpriteAnimations.Normal;
 
-            if (Globals.Me.Jumping == true || Globals.Me.Falling == true || !Globals.Me.OnGround()) //Jumping
+            /*if (Globals.Me.Jumping == true || Globals.Me.Falling == true || !Globals.Me.OnGround()) //Jumping
             {
                 SpriteAnimation = SpriteAnimations.Jump;
                 LastActionTime = Globals.System.GetTimeMs();
             }
             else if (IsMoving && Globals.Me.Jumping == false && Globals.Me.Falling == false && Globals.Me.OnGround()) //Moving
             {
-                    SpriteAnimation = SpriteAnimations.Normal;
-                    LastActionTime = Globals.System.GetTimeMs();
+                SpriteAnimation = SpriteAnimations.Normal;
+                LastActionTime = Globals.System.GetTimeMs();
+            }*/
+            if (IsJumping) //Jumping
+            {
+                SpriteAnimation = SpriteAnimations.Jump;
+                LastActionTime = Globals.System.GetTimeMs();
+            }
+            else if (IsMoving) //Moving
+            {
+                SpriteAnimation = SpriteAnimations.Normal;
+                LastActionTime = Globals.System.GetTimeMs();
             }
             else if (AttackTimer > Globals.System.GetTimeMs()) //Attacking
             {
