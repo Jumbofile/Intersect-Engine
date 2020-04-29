@@ -1592,10 +1592,12 @@ namespace Intersect.Client.Entities
                                 {
                                     Climbing = true;
                                     Globals.Me.Jumping = false;
+                                    IsJumping = false;
                                 }
                                 else
                                 {
                                     Climbing = false;
+                                    IsJumping = true;
                                     Globals.Me.Jumping = true;
                                     JumpHeight++;
                                     JumpDir = 0;
@@ -1621,10 +1623,12 @@ namespace Intersect.Client.Entities
                                 {
                                     Climbing = true;
                                     Globals.Me.Jumping = false;
+                                    IsJumping = false;
                                 }
                                 else
                                 {
                                     Climbing = false;
+                                    IsJumping = true;
                                     FallDir = 1;
                                 }
                             }
@@ -1659,6 +1663,7 @@ namespace Intersect.Client.Entities
                                 tmpX--;
                                 Dir = 4;
                                 IsMoving = true;
+                                IsJumping = true;
                                 Globals.Me.Jumping = true;
                                 OffsetY = Options.TileHeight;
                                 OffsetX = Options.TileWidth;
@@ -1669,6 +1674,7 @@ namespace Intersect.Client.Entities
                             {
                                 JumpHeight = Globals.JumpHeight;
                                 JumpDir = -1;
+                                IsJumping = false;
                                 Globals.Me.Jumping = false;
                             }
                             break;
@@ -1679,6 +1685,7 @@ namespace Intersect.Client.Entities
                                 tmpX++;
                                 Dir = 5;
                                 IsMoving = true;
+                                IsJumping = true;
                                 Globals.Me.Jumping = true;
                                 OffsetY = Options.TileHeight;
                                 OffsetX = -Options.TileWidth;
@@ -1689,6 +1696,7 @@ namespace Intersect.Client.Entities
                             {
                                 JumpHeight = Globals.JumpHeight;
                                 JumpDir = -1;
+                                IsJumping = false;
                                 Globals.Me.Jumping = false;
                             }
                             break;
