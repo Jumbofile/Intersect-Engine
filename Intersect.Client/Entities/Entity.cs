@@ -1807,7 +1807,7 @@ namespace Intersect.Client.Entities
                 SpriteAnimation = SpriteAnimations.Jump;
                 LastActionTime = Globals.System.GetTimeMs();
             }
-            else if (IsMoving) //Moving
+            else if (IsMoving && IsJumping == false) //Moving
             {
                 SpriteAnimation = SpriteAnimations.Normal;
                 LastActionTime = Globals.System.GetTimeMs();

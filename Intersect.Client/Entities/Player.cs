@@ -1635,7 +1635,7 @@ namespace Intersect.Client.Entities
 
                             break;
                         case 2: // Left
-                            if (IsTileBlocked(X - 1, Y, Z, CurrentMap, ref blockedBy) == -1 || (IsTileBlocked(X - 1, Y, Z, CurrentMap, ref blockedBy) == -7))
+                            if (IsTileBlocked(X - 1, Y, Z, CurrentMap, ref blockedBy) == -1 || (IsTileBlocked(X - 1, Y, Z, CurrentMap, ref blockedBy) == -7) || (IsTileBlocked(X - 1, Y, Z, CurrentMap, ref blockedBy) == -8))
                             {
                                 tmpX--;
                                 IsMoving = true;
@@ -1646,7 +1646,7 @@ namespace Intersect.Client.Entities
 
                             break;
                         case 3: // Right
-                            if (IsTileBlocked(X + 1, Y, Z, CurrentMap, ref blockedBy) == -1 || (IsTileBlocked(X + 1, Y, Z, CurrentMap, ref blockedBy) == -7))
+                            if (IsTileBlocked(X + 1, Y, Z, CurrentMap, ref blockedBy) == -1 || (IsTileBlocked(X + 1, Y, Z, CurrentMap, ref blockedBy) == -7) || (IsTileBlocked(X - 1, Y, Z, CurrentMap, ref blockedBy) == -8))
                             {
                                 tmpX++;
                                 IsMoving = true;
@@ -1707,6 +1707,7 @@ namespace Intersect.Client.Entities
                                 tmpX--;
                                 Dir = 6;
                                 IsMoving = true;
+                                IsJumping = true;
                                 OffsetY = -Options.TileHeight;
                                 OffsetX = Options.TileWidth;
                                 FallDir = 6;
@@ -1724,6 +1725,7 @@ namespace Intersect.Client.Entities
                                 tmpX++;
                                 Dir = 7;
                                 IsMoving = true;
+                                IsJumping = true;
                                 OffsetY = -Options.TileHeight;
                                 OffsetX = -Options.TileWidth;
                                 FallDir = 7;
