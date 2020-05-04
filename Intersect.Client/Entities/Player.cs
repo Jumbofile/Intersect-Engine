@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 using Intersect.Client.Core;
@@ -127,21 +128,9 @@ namespace Intersect.Client.Entities
             return Party.Count > 0;
         }
 
-        public bool IsInMyParty(Entity entity)
-        {
-            if (EntityTypes.Player == entity.GetEntityType())
-            {
-                foreach (var member in Party)
-                {
-                    if (member.Id == entity.Id)
-                    {
-                        return true;
-                    }
-                }
-            }
+        public bool IsInMyParty(Player player) => IsInMyParty(player.Id);
 
-            return false;
-        }
+        public bool IsInMyParty(Guid id) => Party.Any(member => member.Id == id);
 
         public bool IsBusy()
         {
@@ -926,7 +915,7 @@ namespace Intersect.Client.Entities
                     if (en.Value.GetEntityType() == EntityTypes.GlobalEntity ||
                         en.Value.GetEntityType() == EntityTypes.Player)
                     {
-                        if (en.Value != Globals.Me && !Globals.Me.IsInMyParty(en.Value))
+                        if(en.Value != Globals.Me && !(en.Value is Player player && Globals.Me.IsInMyParty(player)))
                         {
                             if (GetDistanceTo(en.Value) < GetDistanceTo(closestEntity))
                             {
@@ -1197,7 +1186,7 @@ namespace Intersect.Client.Entities
                                 if (en.Value.CurrentMap == mapId &&
                                     en.Value.X == x &&
                                     en.Value.Y == y &&
-                                    (!en.Value.IsStealthed() || Globals.Me.IsInMyParty(en.Value)))
+                                    (!en.Value.IsStealthed() || en.Value is Player player && Globals.Me.IsInMyParty(player)))
                                 {
                                     if (en.Value.GetType() != typeof(Projectile) &&
                                         en.Value.GetType() != typeof(Resource))
@@ -1262,7 +1251,7 @@ namespace Intersect.Client.Entities
                                         en.Value.X == x &&
                                         en.Value.Y == y &&
                                         !((Event)en.Value).DisablePreview &&
-                                        (!en.Value.IsStealthed() || Globals.Me.IsInMyParty(en.Value)))
+                                        (!en.Value.IsStealthed() || en.Value is Player player && Globals.Me.IsInMyParty(player)))
                                     {
                                         if (TargetBox != null)
                                         {
@@ -1327,6 +1316,13 @@ namespace Intersect.Client.Entities
             {
                 if (item.Value.X == X && item.Value.Y == Y)
                 {
+                    // Are we allowed to see and pick this item up?
+                    if (!item.Value.VisibleToAll && item.Value.Owner != Globals.Me.Id && !Globals.Me.IsInMyParty(item.Value.Owner))
+                    {
+                        // This item does not apply to us!
+                        return false;
+                    }
+
                     PacketSender.SendPickupItem(item.Key);
 
                     return true;
@@ -2109,7 +2105,7 @@ namespace Intersect.Client.Entities
                     continue;
                 }
 
-                if (!en.Value.IsStealthed() || Globals.Me.IsInMyParty(en.Value))
+                if (!en.Value.IsStealthed() || en.Value is Player player && Globals.Me.IsInMyParty(player))
                 {
                     if (en.Value.GetType() != typeof(Projectile) && en.Value.GetType() != typeof(Resource))
                     {
@@ -2137,7 +2133,7 @@ namespace Intersect.Client.Entities
 
                     if (en.Value.CurrentMap == eventMap.Id &&
                         !((Event)en.Value).DisablePreview &&
-                        (!en.Value.IsStealthed() || Globals.Me.IsInMyParty(en.Value)))
+                        (!en.Value.IsStealthed() || en.Value is Player player && Globals.Me.IsInMyParty(player)))
                     {
                         if (TargetType == 1 && TargetIndex == en.Value.Id)
                         {
