@@ -813,11 +813,23 @@ namespace Intersect.Client.Entities
             if (Controls.KeyDown(Control.MoveLeft))
             {
                 movex = -1;
+
+                //allow change of direction in air
+                if(IsJumping)
+                {
+                    Globals.Me.lastDir = 1;
+                }
             }
 
             if (Controls.KeyDown(Control.MoveRight))
             {
                 movex = 1;
+
+                //allow change of direction in air
+                if (IsJumping)
+                {
+                    Globals.Me.lastDir = 2;
+                }
             }
 
 

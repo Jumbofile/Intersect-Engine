@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 
 using Intersect.Client.Core;
+using Intersect.Client.Core.Controls;
 using Intersect.Client.Entities.Events;
 using Intersect.Client.Entities.Projectiles;
 using Intersect.Client.Framework.File_Management;
@@ -971,6 +972,7 @@ namespace Intersect.Client.Entities
                         else
                         {
                             d = lastDir;
+
                         }
 
                         break;
@@ -1816,16 +1818,6 @@ namespace Intersect.Client.Entities
 
             SpriteAnimation = AnimatedTextures[SpriteAnimations.Idle] != null && LastActionTime + TimeBeforeIdling < Globals.System.GetTimeMs() ? SpriteAnimations.Idle : SpriteAnimations.Normal;
 
-            /*if (Globals.Me.Jumping == true || Globals.Me.Falling == true || !Globals.Me.OnGround()) //Jumping
-            {
-                SpriteAnimation = SpriteAnimations.Jump;
-                LastActionTime = Globals.System.GetTimeMs();
-            }
-            else if (IsMoving && Globals.Me.Jumping == false && Globals.Me.Falling == false && Globals.Me.OnGround()) //Moving
-            {
-                SpriteAnimation = SpriteAnimations.Normal;
-                LastActionTime = Globals.System.GetTimeMs();
-            }*/
             if (IsJumping) //Jumping
             {
                 SpriteAnimation = SpriteAnimations.Jump;
