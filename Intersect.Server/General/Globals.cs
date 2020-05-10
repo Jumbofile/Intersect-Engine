@@ -28,6 +28,8 @@ namespace Intersect.Server.General
 
         public static int JumpHeight = 1;
 
+        public static int FallCount = 0;
+
         [NotNull]
         public static ServerTiming Timing { get; } = new ServerTiming();
 

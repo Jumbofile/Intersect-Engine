@@ -107,6 +107,10 @@ namespace Intersect.Editor.Forms.DockingElements
             this.btnEventsHeader = new DarkUI.Controls.DarkButton();
             this.btnNpcsHeader = new DarkUI.Controls.DarkButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlAttributes = new System.Windows.Forms.Panel();
+            this.rbLadder = new DarkUI.Controls.DarkRadioButton();
+            this.rbPlatform = new DarkUI.Controls.DarkRadioButton();
+            this.pnlNpcs = new System.Windows.Forms.Panel();
             this.pnlTiles = new System.Windows.Forms.Panel();
             this.picFringe2 = new System.Windows.Forms.PictureBox();
             this.picFringe = new System.Windows.Forms.PictureBox();
@@ -118,10 +122,6 @@ namespace Intersect.Editor.Forms.DockingElements
             this.pnlEvents = new System.Windows.Forms.Panel();
             this.pnlLights = new System.Windows.Forms.Panel();
             this.lightEditor = new Intersect.Editor.Forms.Controls.LightEditorCtrl();
-            this.pnlAttributes = new System.Windows.Forms.Panel();
-            this.pnlNpcs = new System.Windows.Forms.Panel();
-            this.rbPlatform = new DarkUI.Controls.DarkRadioButton();
-            this.rbLadder = new DarkUI.Controls.DarkRadioButton();
             this.grpResource.SuspendLayout();
             this.grpZResource.SuspendLayout();
             this.grpItem.SuspendLayout();
@@ -139,6 +139,8 @@ namespace Intersect.Editor.Forms.DockingElements
             this.grpNpcList.SuspendLayout();
             this.grpSpawnLoc.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.pnlAttributes.SuspendLayout();
+            this.pnlNpcs.SuspendLayout();
             this.pnlTiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFringe2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFringe)).BeginInit();
@@ -149,8 +151,6 @@ namespace Intersect.Editor.Forms.DockingElements
             ((System.ComponentModel.ISupportInitialize)(this.picTileset)).BeginInit();
             this.pnlEvents.SuspendLayout();
             this.pnlLights.SuspendLayout();
-            this.pnlAttributes.SuspendLayout();
-            this.pnlNpcs.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblLayer
@@ -1150,6 +1150,66 @@ namespace Intersect.Editor.Forms.DockingElements
             this.panel1.Size = new System.Drawing.Size(278, 424);
             this.panel1.TabIndex = 23;
             // 
+            // pnlAttributes
+            // 
+            this.pnlAttributes.Controls.Add(this.rbLadder);
+            this.pnlAttributes.Controls.Add(this.rbPlatform);
+            this.pnlAttributes.Controls.Add(this.rbSlide);
+            this.pnlAttributes.Controls.Add(this.rbBlocked);
+            this.pnlAttributes.Controls.Add(this.rbGrappleStone);
+            this.pnlAttributes.Controls.Add(this.rbAnimation);
+            this.pnlAttributes.Controls.Add(this.rbResource);
+            this.pnlAttributes.Controls.Add(this.rbSound);
+            this.pnlAttributes.Controls.Add(this.rbWarp);
+            this.pnlAttributes.Controls.Add(this.rbNPCAvoid);
+            this.pnlAttributes.Controls.Add(this.rbZDimension);
+            this.pnlAttributes.Controls.Add(this.rbItem);
+            this.pnlAttributes.Controls.Add(this.grpItem);
+            this.pnlAttributes.Controls.Add(this.grpResource);
+            this.pnlAttributes.Controls.Add(this.grpAnimation);
+            this.pnlAttributes.Controls.Add(this.grpSlide);
+            this.pnlAttributes.Controls.Add(this.grpSound);
+            this.pnlAttributes.Controls.Add(this.grpZDimension);
+            this.pnlAttributes.Controls.Add(this.grpWarp);
+            this.pnlAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlAttributes.Location = new System.Drawing.Point(0, 0);
+            this.pnlAttributes.Name = "pnlAttributes";
+            this.pnlAttributes.Size = new System.Drawing.Size(276, 422);
+            this.pnlAttributes.TabIndex = 1;
+            // 
+            // rbLadder
+            // 
+            this.rbLadder.AutoSize = true;
+            this.rbLadder.ForeColor = System.Drawing.Color.Gainsboro;
+            this.rbLadder.Location = new System.Drawing.Point(115, 77);
+            this.rbLadder.Name = "rbLadder";
+            this.rbLadder.Size = new System.Drawing.Size(58, 17);
+            this.rbLadder.TabIndex = 38;
+            this.rbLadder.Text = "Ladder";
+            this.rbLadder.CheckedChanged += new System.EventHandler(this.rbLadder_CheckedChanged);
+            // 
+            // rbPlatform
+            // 
+            this.rbPlatform.AutoSize = true;
+            this.rbPlatform.ForeColor = System.Drawing.Color.Gainsboro;
+            this.rbPlatform.Location = new System.Drawing.Point(115, 53);
+            this.rbPlatform.Name = "rbPlatform";
+            this.rbPlatform.Size = new System.Drawing.Size(63, 17);
+            this.rbPlatform.TabIndex = 37;
+            this.rbPlatform.Text = "Platform";
+            this.rbPlatform.CheckedChanged += new System.EventHandler(this.rbPlatform_CheckedChanged);
+            // 
+            // pnlNpcs
+            // 
+            this.pnlNpcs.Controls.Add(this.grpNpcList);
+            this.pnlNpcs.Controls.Add(this.lstMapNpcs);
+            this.pnlNpcs.Controls.Add(this.grpSpawnLoc);
+            this.pnlNpcs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlNpcs.Location = new System.Drawing.Point(0, 0);
+            this.pnlNpcs.Name = "pnlNpcs";
+            this.pnlNpcs.Size = new System.Drawing.Size(276, 422);
+            this.pnlNpcs.TabIndex = 1;
+            // 
             // pnlTiles
             // 
             this.pnlTiles.Controls.Add(this.picFringe2);
@@ -1272,64 +1332,6 @@ namespace Intersect.Editor.Forms.DockingElements
             this.lightEditor.Visible = false;
             this.lightEditor.Load += new System.EventHandler(this.lightEditor_Load);
             // 
-            // pnlAttributes
-            // 
-            this.pnlAttributes.Controls.Add(this.rbLadder);
-            this.pnlAttributes.Controls.Add(this.rbPlatform);
-            this.pnlAttributes.Controls.Add(this.rbSlide);
-            this.pnlAttributes.Controls.Add(this.rbBlocked);
-            this.pnlAttributes.Controls.Add(this.rbGrappleStone);
-            this.pnlAttributes.Controls.Add(this.rbAnimation);
-            this.pnlAttributes.Controls.Add(this.rbResource);
-            this.pnlAttributes.Controls.Add(this.rbSound);
-            this.pnlAttributes.Controls.Add(this.rbWarp);
-            this.pnlAttributes.Controls.Add(this.rbNPCAvoid);
-            this.pnlAttributes.Controls.Add(this.rbZDimension);
-            this.pnlAttributes.Controls.Add(this.rbItem);
-            this.pnlAttributes.Controls.Add(this.grpItem);
-            this.pnlAttributes.Controls.Add(this.grpResource);
-            this.pnlAttributes.Controls.Add(this.grpAnimation);
-            this.pnlAttributes.Controls.Add(this.grpSlide);
-            this.pnlAttributes.Controls.Add(this.grpSound);
-            this.pnlAttributes.Controls.Add(this.grpZDimension);
-            this.pnlAttributes.Controls.Add(this.grpWarp);
-            this.pnlAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlAttributes.Location = new System.Drawing.Point(0, 0);
-            this.pnlAttributes.Name = "pnlAttributes";
-            this.pnlAttributes.Size = new System.Drawing.Size(276, 422);
-            this.pnlAttributes.TabIndex = 1;
-            // 
-            // pnlNpcs
-            // 
-            this.pnlNpcs.Controls.Add(this.grpNpcList);
-            this.pnlNpcs.Controls.Add(this.lstMapNpcs);
-            this.pnlNpcs.Controls.Add(this.grpSpawnLoc);
-            this.pnlNpcs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlNpcs.Location = new System.Drawing.Point(0, 0);
-            this.pnlNpcs.Name = "pnlNpcs";
-            this.pnlNpcs.Size = new System.Drawing.Size(276, 422);
-            this.pnlNpcs.TabIndex = 1;
-            // 
-            // rbPlatform
-            // 
-            this.rbPlatform.AutoSize = true;
-            this.rbPlatform.ForeColor = System.Drawing.Color.Gainsboro;
-            this.rbPlatform.Location = new System.Drawing.Point(115, 53);
-            this.rbPlatform.Name = "rbPlatform";
-            this.rbPlatform.Size = new System.Drawing.Size(63, 17);
-            this.rbPlatform.TabIndex = 37;
-            this.rbPlatform.Text = "Platform";
-            // 
-            // rbLadder
-            // 
-            this.rbLadder.AutoSize = true;
-            this.rbLadder.ForeColor = System.Drawing.Color.Gainsboro;
-            this.rbLadder.Location = new System.Drawing.Point(115, 77);
-            this.rbLadder.Name = "rbLadder";
-            this.rbLadder.Size = new System.Drawing.Size(58, 17);
-            this.rbLadder.TabIndex = 38;
-            this.rbLadder.Text = "Ladder";
-            // 
             // FrmMapLayers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1382,6 +1384,9 @@ namespace Intersect.Editor.Forms.DockingElements
             this.grpSpawnLoc.ResumeLayout(false);
             this.grpSpawnLoc.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.pnlAttributes.ResumeLayout(false);
+            this.pnlAttributes.PerformLayout();
+            this.pnlNpcs.ResumeLayout(false);
             this.pnlTiles.ResumeLayout(false);
             this.pnlTiles.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFringe2)).EndInit();
@@ -1394,9 +1399,6 @@ namespace Intersect.Editor.Forms.DockingElements
             this.pnlEvents.ResumeLayout(false);
             this.pnlEvents.PerformLayout();
             this.pnlLights.ResumeLayout(false);
-            this.pnlAttributes.ResumeLayout(false);
-            this.pnlAttributes.PerformLayout();
-            this.pnlNpcs.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -417,6 +417,7 @@ namespace Intersect.Server.Networking
                 }
                 else
                 {
+                    Globals.FallCount = packet.Fc;
                     player.Move(packet.Dir, player, false);
                     if (player.MoveTimer > Globals.Timing.TimeMs)
                     {

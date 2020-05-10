@@ -853,7 +853,15 @@ namespace Intersect.Server.Entities
 
                         break;
                     case 1: //Down
-                        ++yOffset;
+                        if(Globals.FallCount > 2)
+                        {
+                            ++yOffset;
+                            ++yOffset;
+                        }
+                        else
+                        {
+                            ++yOffset;
+                        }
 
                         break;
                     case 2: //Left
@@ -875,12 +883,28 @@ namespace Intersect.Server.Entities
 
                         break;
                     case 6: //SW
-                        ++yOffset;
+                        if (Globals.FallCount > 2)
+                        {
+                            ++yOffset;
+                            ++yOffset;
+                        }
+                        else
+                        {
+                            ++yOffset;
+                        }
                         --xOffset;
 
                         break;
                     case 7: //SE
-                        ++yOffset;
+                        if (Globals.FallCount > 2)
+                        {
+                            ++yOffset;
+                            ++yOffset;
+                        }
+                        else
+                        {
+                            ++yOffset;
+                        }
                         ++xOffset;
 
                         break;

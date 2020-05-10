@@ -554,7 +554,7 @@ namespace Intersect.Client.Entities
             else if (IsMoving)
             {
                 float deplacementTime = ecTime * Options.TileHeight / GetMovementTime();
-
+                
                 // Dir = facing direction (only 4)
                 // delta offset Must be more than 0 for movements. 0 = slowest
                 // Direction is related to the sprite animation, I don't know how to set a sprite animation for eache direction
@@ -623,7 +623,15 @@ namespace Intersect.Client.Entities
 
                         break;
                     case 6: //SW
-                        OffsetY += deplacementTime;
+                        if (Globals.Me.FallCount > 2 || Globals.Me.Landing == true)
+                        {
+                            OffsetY += (deplacementTime * 2f);
+                        }
+                        else
+                        {
+                            OffsetY += deplacementTime;
+                        }
+                        
                         OffsetX -= deplacementTime;
 
                         if (OffsetY > 0)
@@ -633,9 +641,17 @@ namespace Intersect.Client.Entities
 
                         break;
                     case 7: // SE
-                        OffsetY += deplacementTime;
+                        if (Globals.Me.FallCount > 2 || Globals.Me.Landing == true)
+                        {
+                            OffsetY += (deplacementTime*2f);
+                        }
+                        else
+                        {
+                            OffsetY += deplacementTime;
+                        }
                         OffsetX += deplacementTime;
 
+                        Console.WriteLine("OffsetY " + OffsetY);
                         if (OffsetY > 0)
                             OffsetY = 0;
                         if (OffsetX > 0)

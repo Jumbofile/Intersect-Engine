@@ -111,6 +111,7 @@ namespace Intersect.Server.Entities
         [NotMapped]
         public long ExperienceToNextLevel => GetExperienceToNextLevel(Level);
 
+        public int FallCount = 0;
         public static Player FindOnline(Guid id)
         {
             return OnlinePlayers.ContainsKey(id) ? OnlinePlayers[id] : null;

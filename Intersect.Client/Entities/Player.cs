@@ -70,7 +70,11 @@ namespace Intersect.Client.Entities
 
         public int FallDir = -1;
 
+        public int FallCount = 0;
+
         public bool Climbing = false;
+
+        public bool Landing = false;
 
         public Player(Guid id, PlayerEntityPacket packet) : base(id, packet)
         {
@@ -1458,6 +1462,8 @@ namespace Intersect.Client.Entities
                 Globals.Me.Falling = false;
                 FallDir = -1;
                 IsJumping = false;
+                FallCount = 0;
+                Landing = false;
             }
 
             //We are falling
@@ -1468,7 +1474,7 @@ namespace Intersect.Client.Entities
                 //if we dont check if we are on thr ground, we cant land on the ground
                 if (OnGround() == false)
                 {
-                    
+                    Globals.Me.FallCount++;
                     if (FallDir == 1)
                     {
                         Globals.Me.MoveDir = 1;
@@ -1499,6 +1505,10 @@ namespace Intersect.Client.Entities
                             FallDir = 1;
                         }
                     }
+                }
+                else
+                {
+                    Globals.Me.FallCount = 0;
                 }
             }
 
@@ -1554,6 +1564,7 @@ namespace Intersect.Client.Entities
                         }
                         
                     }
+
                     JumpDir = -1;
                 }
                 //We are jumping still
@@ -1621,11 +1632,31 @@ namespace Intersect.Client.Entities
                         case 1: // Down
                             if (IsTileBlocked(X, Y + 1, Z, CurrentMap, ref blockedBy) == -1 || IsTileBlocked(X, Y + 1, Z, CurrentMap, ref blockedBy) == -7 || IsTileBlocked(X, Y + 1, Z, CurrentMap, ref blockedBy) == -8)
                             {
-                                tmpY++;
-                                IsMoving = true;
-                                Dir = 1;
-                                OffsetY = -Options.TileHeight;
-                                OffsetX = 0;
+                                if (Globals.Me.FallCount > 2)
+                                {
+                                    if (IsTileBlocked(X, Y + 2, Z, CurrentMap, ref blockedBy) == -1 || IsTileBlocked(X, Y + 2, Z, CurrentMap, ref blockedBy) == -8)
+                                    {
+                                        tmpY+=2;
+                                        IsMoving = true;
+                                        Dir = 1;
+                                        OffsetY = -(Options.TileHeight*2);
+                                        OffsetX = 0;
+                                    }
+                                    else
+                                    {
+                                        FallCount = 0;
+                                    }
+                                }
+                                else
+                                {
+                                    tmpY++;
+                                    IsMoving = true;
+                                    Dir = 1;
+                                    OffsetY = -Options.TileHeight;
+                                    OffsetX = 0;
+                                }
+                                
+                               
                                 //did we hit a ladder?
                                 if (IsTileBlocked(X, Y + 1, Z, CurrentMap, ref blockedBy) == -8)
                                 {
@@ -1711,14 +1742,39 @@ namespace Intersect.Client.Entities
                         case 6: // SW
                             if (IsTileBlocked(X - 1, Y + 1, Z, CurrentMap, ref blockedBy) == -1 || IsTileBlocked(X - 1, Y + 1, Z, CurrentMap, ref blockedBy) == -7)
                             {
-                                tmpY++;
-                                tmpX--;
-                                Dir = 6;
-                                IsMoving = true;
-                                IsJumping = true;
-                                OffsetY = -Options.TileHeight;
-                                OffsetX = Options.TileWidth;
-                                FallDir = 6;
+
+                                if (Globals.Me.FallCount > 2)
+                                {
+                                    if (IsTileBlocked(X - 1, Y + 2, Z, CurrentMap, ref blockedBy) == -1)
+                                    {
+                                        tmpY += 2;
+                                        tmpX--;
+                                        IsMoving = true;
+                                        Dir = 6;
+                                        OffsetY = -(Options.TileHeight * 2);
+                                        OffsetX = Options.TileWidth;
+                                        FallDir = 6;
+                                    }
+                                    else
+                                    {
+                                        FallCount = 0;
+                                        FallDir = 1;
+                                        Dir = 1;
+                                        Landing = true;
+                                    }
+
+                                }
+                                else
+                                {
+                                    tmpY++;
+                                    tmpX--;
+                                    Dir = 6;
+                                    IsMoving = true;
+                                    IsJumping = true;
+                                    OffsetY = -Options.TileHeight;
+                                    OffsetX = Options.TileWidth;
+                                    FallDir = 6;
+                                }
                             }
                             else
                             {
@@ -1729,14 +1785,38 @@ namespace Intersect.Client.Entities
                         case 7: // SE
                             if (IsTileBlocked(X + 1, Y + 1, Z, CurrentMap, ref blockedBy) == -1 || IsTileBlocked(X + 1, Y + 1, Z, CurrentMap, ref blockedBy) == -7)
                             {
-                                tmpY++;
-                                tmpX++;
-                                Dir = 7;
-                                IsMoving = true;
-                                IsJumping = true;
-                                OffsetY = -Options.TileHeight;
-                                OffsetX = -Options.TileWidth;
-                                FallDir = 7;
+                                if (Globals.Me.FallCount > 2)
+                                {
+                                    if (IsTileBlocked(X + 1, Y + 2, Z, CurrentMap, ref blockedBy) == -1)
+                                    {
+                                        tmpY += 2;
+                                        tmpX += 1;
+                                        IsMoving = true;
+                                        Dir = 7;
+                                        OffsetY = -(Options.TileHeight*2);
+                                        OffsetX = -Options.TileWidth;
+                                        FallDir = 7;
+                                    }
+                                    else
+                                    {
+                                        FallCount = 0;
+                                        FallDir = 1;
+                                        Dir = 1;
+                                        Landing = true;
+                                    }
+                                   
+                                }
+                                else
+                                {
+                                    tmpY++;
+                                    tmpX++;
+                                    Dir = 7;
+                                    IsMoving = true;
+                                    IsJumping = true;
+                                    OffsetY = -Options.TileHeight;
+                                    OffsetX = -Options.TileWidth;
+                                    FallDir = 7;
+                                }
                             }
                             else
                             {
