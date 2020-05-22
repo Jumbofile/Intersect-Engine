@@ -230,10 +230,6 @@ namespace Intersect.Server.Maps
         /// <param name="item">The <see cref="Item"/> to spawn on the map.</param>
         /// <param name="amount">The amount of times to spawn this item to the map. Set to the <see cref="Item"/> quantity, overwrites quantity if stackable!</param>
         /// <param name="owner">The player Id that will be the temporary owner of this item.</param>
-        public void SpawnItem(int x, int y, Item item, int amount, Guid owner)
-        {
-            this.SpawnItem(x, y, item, amount, Guid.Empty);
-        }
 
         public void SpawnItem(int x, int y, Item item, int amount, Guid owner)
         {
