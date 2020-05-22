@@ -12,9 +12,7 @@ Intersect Engine with 100% more bunny hops!
 
 ## About
 
-Intersect Platformer Edition is a 2D tile-based side-scroller engine using Intersect Engine.
-
-This engine is currently in a very basic state and will be improved.
+Intersect Platformer Edition is a fully featured 2D tile-based side-scroller engine using Intersect Engine.
 
 ## Features
 
