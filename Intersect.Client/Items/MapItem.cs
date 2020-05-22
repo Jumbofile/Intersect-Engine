@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
+
 namespace Intersect.Client.Items
 {
 

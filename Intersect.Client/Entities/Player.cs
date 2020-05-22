@@ -931,7 +931,7 @@ namespace Intersect.Client.Entities
                     if (en.Value.GetEntityType() == EntityTypes.GlobalEntity ||
                         en.Value.GetEntityType() == EntityTypes.Player)
                     {
-                        if(en.Value != Globals.Me && !(en.Value is Player player && Globals.Me.IsInMyParty(player)))
+                        if (en.Value != Globals.Me && !(en.Value is Player player && Globals.Me.IsInMyParty(player)))
                         {
                             if (GetDistanceTo(en.Value) < GetDistanceTo(closestEntity))
                             {
@@ -1266,7 +1266,7 @@ namespace Intersect.Client.Entities
                                     if (en.Value.CurrentMap == mapId &&
                                         en.Value.X == x &&
                                         en.Value.Y == y &&
-                                        !((Event)en.Value).DisablePreview &&
+                                        !((Event) en.Value).DisablePreview &&
                                         (!en.Value.IsStealthed() || en.Value is Player player && Globals.Me.IsInMyParty(player)))
                                     {
                                         if (TargetBox != null)
@@ -2224,7 +2224,7 @@ namespace Intersect.Client.Entities
                     }
 
                     if (en.Value.CurrentMap == eventMap.Id &&
-                        !((Event)en.Value).DisablePreview &&
+                        !((Event) en.Value).DisablePreview &&
                         (!en.Value.IsStealthed() || en.Value is Player player && Globals.Me.IsInMyParty(player)))
                     {
                         if (TargetType == 1 && TargetIndex == en.Value.Id)

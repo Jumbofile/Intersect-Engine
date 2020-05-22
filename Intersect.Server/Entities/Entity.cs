@@ -2662,7 +2662,7 @@ namespace Intersect.Server.Entities
 
                     // Remove the item from inventory if a player.
                     var player = this as Player;
-                    player?.TakeItemsBySlot(n, item.Quantity);
+                    player?.TryTakeItem(Items[n], item.Quantity);
                 }
             }
 

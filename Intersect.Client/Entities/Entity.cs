@@ -754,7 +754,6 @@ namespace Intersect.Client.Entities
             CalculateCenterPos();
 
             List<Animation> animsToRemove = null;
-
             foreach (var animInstance in Animations)
             {
                 animInstance.Update();
