@@ -53,6 +53,10 @@ namespace Intersect.Configuration
 
         public const int DEFAULT_JUMP_HEIGHT = 1;
 
+        public const int DEFAULT_JUMP_SPEED = 1;
+
+        public const int DEFAULT_FALL_SPEED = 1;
+
         #endregion
 
         #region Static Properties and Methods
@@ -69,6 +73,8 @@ namespace Intersect.Configuration
             ChatLines = Math.Min(Math.Max(ChatLines, 10), 500);
             IntroImages = new List<string>(IntroImages?.Distinct() ?? new List<string>());
             JumpHeight = Math.Min(Math.Max(JumpHeight, 1), 10);
+            JumpSpeed = Math.Min(Math.Max(JumpSpeed, 1), 10);
+            FallSpeed = Math.Min(Math.Max(FallSpeed, 1), 10);
         }
 
         #endregion
@@ -126,9 +132,20 @@ namespace Intersect.Configuration
         public string MenuBackground { get; set; } = DEFAULT_MENU_BACKGROUND;
 
         /// <summary>
-        /// Menu background art
+        /// Jump Height
         /// </summary>
         public int JumpHeight { get; set; } = DEFAULT_JUMP_HEIGHT;
+
+        /// <summary>
+        /// Jump Speed
+        /// </summary>
+        public int JumpSpeed { get; set; } = DEFAULT_JUMP_SPEED;
+
+        /// <summary>
+        /// Fall speed
+        /// </summary>
+        public int FallSpeed { get; set; } = DEFAULT_FALL_SPEED;
+
 
         // TODO: What is this for?
         public List<string> IntroImages { get; set; } = new List<string>();
