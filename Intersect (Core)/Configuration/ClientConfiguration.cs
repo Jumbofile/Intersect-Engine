@@ -53,9 +53,7 @@ namespace Intersect.Configuration
 
         public const int DEFAULT_JUMP_HEIGHT = 1;
 
-        public const int DEFAULT_JUMP_SPEED = 1;
-
-        public const int DEFAULT_FALL_SPEED = 1;
+        public const string DEFAULT_STRICT_JUMP = "false";
 
         #endregion
 
@@ -73,8 +71,7 @@ namespace Intersect.Configuration
             ChatLines = Math.Min(Math.Max(ChatLines, 10), 500);
             IntroImages = new List<string>(IntroImages?.Distinct() ?? new List<string>());
             JumpHeight = Math.Min(Math.Max(JumpHeight, 1), 10);
-            JumpSpeed = Math.Min(Math.Max(JumpSpeed, 1), 10);
-            FallSpeed = Math.Min(Math.Max(FallSpeed, 1), 10);
+            StrictJump = string.IsNullOrWhiteSpace(StrictJump) ? DEFAULT_STRICT_JUMP : StrictJump.Trim();
         }
 
         #endregion
@@ -137,14 +134,9 @@ namespace Intersect.Configuration
         public int JumpHeight { get; set; } = DEFAULT_JUMP_HEIGHT;
 
         /// <summary>
-        /// Jump Speed
+        /// Can you change dir in air or not
         /// </summary>
-        public int JumpSpeed { get; set; } = DEFAULT_JUMP_SPEED;
-
-        /// <summary>
-        /// Fall speed
-        /// </summary>
-        public int FallSpeed { get; set; } = DEFAULT_FALL_SPEED;
+        public string StrictJump { get; set; } = DEFAULT_STRICT_JUMP;
 
 
         // TODO: What is this for?
